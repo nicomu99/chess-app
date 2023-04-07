@@ -6,10 +6,13 @@ import java.util.ArrayList;
 
 public class Faction {
 
-    private ArrayList<Piece> piece;
     private boolean hasNextMove;
+    private final FactionColor factionColor;
 
-    public Faction() { }
+    public Faction(boolean hasNextMove, FactionColor factionColor) {
+        this.hasNextMove = hasNextMove;
+        this.factionColor = factionColor;
+    }
 
     public void executeNextMove() { }
 }

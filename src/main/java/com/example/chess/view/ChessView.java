@@ -30,6 +30,7 @@ public class ChessView extends Application {
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
 

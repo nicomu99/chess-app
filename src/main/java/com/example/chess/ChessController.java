@@ -16,6 +16,7 @@ public class ChessController {
     @FXML
     void initialize() {
         this.modelHandler = new ModelHandler();
+        modelHandler.initializeGame();
     }
 
     public ChessController() {

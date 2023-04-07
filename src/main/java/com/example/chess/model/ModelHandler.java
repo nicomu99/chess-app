@@ -5,8 +5,15 @@ public class ModelHandler {
     private Faction whiteFaction;
     private Faction blackFaction;
 
+    private Board board;
+
     public ModelHandler() {
-        this.whiteFaction = new Faction();
-        this.blackFaction = new Faction();
+        this.whiteFaction = new Faction(true, FactionColor.WHITE);
+        this.blackFaction = new Faction(false, FactionColor.BLACK);
+    }
+
+    public void initializeGame() {
+        this.board = BoardBuilder.buildBoard();
+        System.out.print(this.board.toString());
     }
 }
