@@ -2,7 +2,6 @@ package com.example.chess;
 
 import com.example.chess.model.ModelHandler;
 import com.example.chess.view.ChessView;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
