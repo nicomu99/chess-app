@@ -17,18 +17,11 @@ import java.io.IOException;
 
 public class ChessView extends Application {
 
-    private Stage stage;
-    private Parent root;
-
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
 
         try {
-            this.stage = stage;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/chess/hello-view.fxml"));
-            this.root = loader.load();
-
-            ChessController controller = loader.getController();
+            ChessController controller = new ChessController();
             controller.setMain(this);
 
             GridPane pane = new GridPane();
@@ -49,7 +42,7 @@ public class ChessView extends Application {
             }
 
             Scene scene = new Scene(pane);
-            stage.setTitle("Hello!");
+            stage.setTitle("Chess");
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
