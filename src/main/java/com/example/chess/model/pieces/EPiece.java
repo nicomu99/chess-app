@@ -9,6 +9,10 @@ public enum EPiece {
         this.label = label;
     }
 
+    public String getLabel() {
+        return this.label;
+    }
+
     @Override
     public String toString() {
         return this.label;

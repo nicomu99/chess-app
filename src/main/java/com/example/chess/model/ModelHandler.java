@@ -12,6 +12,10 @@ public class ModelHandler {
         this.blackFaction = new Faction(false, FactionColor.BLACK);
     }
 
+    public Board getBoard() {
+        return this.board;
+    }
+
     public void initializeGame() {
         this.board = BoardBuilder.buildBoard();
         System.out.print(this.board.toString());

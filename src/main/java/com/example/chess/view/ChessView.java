@@ -21,27 +21,17 @@ public class ChessView extends Application {
     public void start(Stage stage) {
 
         try {
+
+            // Create the controller
             ChessController controller = new ChessController();
             controller.setMain(this);
 
-            GridPane pane = new GridPane();
-            int count = 0;
-            for(int i = 0; i < BoardUtils.RANK_COUNT; i++) {
-                count++;
-                for(int j = 0; j < BoardUtils.FILE_COUNT; j++) {
-                    Rectangle r = new Rectangle(100, 100, 100, 100);
-                    r.setOnMouseClicked(event -> r.setFill(Color.BLACK));
-                    if(count % 2 == 0) {
-                        r.setFill(Color.GREEN);
-                    } else {
-                        r.setFill(Color.WHITE);
-                    }
-                    pane.add(r, j, i);
-                    count++;
-                }
-            }
-
+            // Create the view of the standard grid map
+            TilePane pane = new TilePane();
             Scene scene = new Scene(pane);
+            controller.setTilePane(pane);
+            controller.redrawTilePane();
+
             stage.setTitle("Chess");
             stage.setScene(scene);
             stage.show();

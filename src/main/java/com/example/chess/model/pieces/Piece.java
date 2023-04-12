@@ -22,6 +22,14 @@ public abstract class Piece {
         this.pieceLabel = pieceLabel;
     }
 
+    public FactionColor getColor() {
+        return this.color;
+    }
+
+    public EPiece getPieceLabel() {
+        return this.pieceLabel;
+    }
+
     public abstract ArrayList<Move> calculateLegalMoves();
 
     public abstract void executeMove(Move move);

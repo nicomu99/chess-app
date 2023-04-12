@@ -12,6 +12,13 @@ public class Coordinates {
         this.yCoordinate = yCoordinate;
     }
 
+    public int getxCoordinate() {
+        return this.xCoordinate;
+    }
+
+    public int getyCoordinate() {
+        return this.yCoordinate;
+    }
 
     @Override
     public String toString() {

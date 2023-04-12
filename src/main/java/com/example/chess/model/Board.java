@@ -2,7 +2,6 @@ package com.example.chess.model;
 
 import com.example.chess.model.pieces.Piece;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Board {
@@ -13,6 +12,10 @@ public class Board {
     public Board() {
         this.tiles = new HashMap<>();
         this.pieces = new HashMap<>();
+    }
+
+    public HashMap<Coordinates, Piece> getPieces() {
+        return this.pieces;
     }
 
     public void addTile(Tile tile) {
