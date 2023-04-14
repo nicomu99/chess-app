@@ -1,5 +1,7 @@
 package com.example.chess.model.moves;
 
+import java.util.ArrayList;
+
 public enum MoveDirection {
     LEFT_UPPER(-1, -1),
     LEFT_LOWER(-1, 1),
@@ -16,5 +18,25 @@ public enum MoveDirection {
     MoveDirection(int xDirection, int yDirection) {
         this.xDirection = xDirection;
         this.yDirection = yDirection;
+    }
+
+    public static ArrayList<MoveDirection> getDiagonalDirections() {
+        ArrayList<MoveDirection> directions = new ArrayList<>();
+        directions.add(LEFT_LOWER);
+        directions.add(LEFT_UPPER);
+        directions.add(RIGHT_LOWER);
+        directions.add(RIGHT_UPPER);
+
+        return directions;
+    }
+
+    public static ArrayList<MoveDirection> getStraightMoveDirections() {
+        ArrayList<MoveDirection> directions = new ArrayList<>();
+        directions.add(LEFT);
+        directions.add(UPPER);
+        directions.add(LOWER);
+        directions.add(RIGHT);
+
+        return directions;
     }
 }

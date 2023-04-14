@@ -11,16 +11,21 @@ import java.util.ArrayList;
 
 public class Rook extends Piece {
 
+    private final ArrayList<MoveDirection> legalMoveDirections;
+
     public Rook(Coordinates coordinates, FactionColor color) {
         super(coordinates, color, EPiece.ROOK);
+        legalMoveDirections = new ArrayList<>();
+        legalMoveDirections.addAll(MoveDirection.getDiagonalDirections());
     }
 
     @Override
     public ArrayList<Move> calculateLegalMoves(Board board) {
-        ArrayList<Move> moves = new ArrayList<>(MoveCalculator.checkDirection(this, board, MoveDirection.UPPER));
-        moves.addAll(MoveCalculator.checkDirection(this, board, MoveDirection.LOWER));
-        moves.addAll(MoveCalculator.checkDirection(this, board, MoveDirection.RIGHT));
-        moves.addAll(MoveCalculator.checkDirection(this, board, MoveDirection.LEFT));
+        ArrayList<Move> moves = new ArrayList<>();
+
+        for(MoveDirection direction: legalMoveDirections) {
+            moves.addAll(MoveCalculator.checkDirection(this, board, direction));
+        }
 
         return moves;
     }

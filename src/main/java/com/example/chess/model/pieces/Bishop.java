@@ -9,17 +9,21 @@ import java.util.ArrayList;
 
 public class Bishop extends Piece {
 
+    private final ArrayList<MoveDirection> legalMoveDirections;
+
     public Bishop(Coordinates coordinates, FactionColor color) {
         super(coordinates, color, EPiece.BISHOP);
+        legalMoveDirections = new ArrayList<>();
+        legalMoveDirections.addAll(MoveDirection.getDiagonalDirections());
     }
 
     @Override
     public ArrayList<Move> calculateLegalMoves(Board board) {
+        ArrayList<Move> moves = new ArrayList<>();
 
-        ArrayList<Move> moves = new ArrayList<>(MoveCalculator.checkDirection(this, board, MoveDirection.LEFT_UPPER));
-        moves.addAll(MoveCalculator.checkDirection(this, board, MoveDirection.LEFT_LOWER));
-        moves.addAll(MoveCalculator.checkDirection(this, board, MoveDirection.RIGHT_UPPER));
-        moves.addAll(MoveCalculator.checkDirection(this, board, MoveDirection.RIGHT_LOWER));
+        for(MoveDirection direction: legalMoveDirections) {
+            moves.addAll(MoveCalculator.checkDirection(this, board, direction));
+        }
 
         return moves;
     }
