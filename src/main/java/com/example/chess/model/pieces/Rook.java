@@ -24,7 +24,7 @@ public class Rook extends Piece {
         ArrayList<Move> moves = new ArrayList<>();
 
         for(MoveDirection direction: legalMoveDirections) {
-            moves.addAll(MoveCalculator.checkDirection(this, board, direction));
+            moves.addAll(MoveCalculator.checkDirectionLineMoves(this, board, direction));
         }
 
         return moves;
