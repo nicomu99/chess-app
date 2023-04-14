@@ -1,4 +1,6 @@
-package com.example.chess.model;
+package com.example.chess.model.moves;
+
+import com.example.chess.model.Coordinates;
 
 public class Move {
 

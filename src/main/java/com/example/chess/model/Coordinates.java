@@ -37,4 +37,12 @@ public class Coordinates {
     public int hashCode() {
         return Objects.hash(xCoordinate, yCoordinate);
     }
+
+    public Coordinates addCoordinates(int xAddition, int yAddition) {
+        return new Coordinates(this.xCoordinate + xAddition, this.yCoordinate + yAddition);
+    }
+
+    public boolean isValidCoordinate() {
+        return this.xCoordinate >= 0 && this.yCoordinate >= 0 && this.xCoordinate < BoardUtils.RANK_COUNT && this.yCoordinate < BoardUtils.FILE_COUNT;
+    }
 }

@@ -1,15 +1,16 @@
 package com.example.chess.model.pieces;
 
+import com.example.chess.model.Board;
 import com.example.chess.model.Coordinates;
 import com.example.chess.model.FactionColor;
-import com.example.chess.model.Move;
+import com.example.chess.model.moves.Move;
 
 import java.util.ArrayList;
 
 public abstract class Piece {
 
-    private Coordinates coordinates;
-    private final FactionColor color;
+    protected Coordinates coordinates;
+    protected final FactionColor color;
     private final EPiece pieceLabel;
 
     public Coordinates getCoordinates() {
@@ -30,7 +31,7 @@ public abstract class Piece {
         return this.pieceLabel;
     }
 
-    public abstract ArrayList<Move> calculateLegalMoves();
+    public abstract ArrayList<Move> calculateLegalMoves(Board board);
 
     public abstract void executeMove(Move move);
 
