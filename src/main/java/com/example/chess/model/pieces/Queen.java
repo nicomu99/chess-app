@@ -8,7 +8,6 @@ import com.example.chess.model.moves.MoveCalculator;
 import com.example.chess.model.moves.MoveDirection;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Queen extends Piece {
 
