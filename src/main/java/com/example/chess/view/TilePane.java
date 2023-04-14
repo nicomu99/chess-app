@@ -4,26 +4,25 @@ import com.example.chess.model.Board;
 import com.example.chess.model.BoardUtils;
 import com.example.chess.model.Coordinates;
 import com.example.chess.model.pieces.Piece;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Pair;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TilePane extends GridPane {
 
-    public TilePane() {
+    public TilePane(EventHandler<MouseEvent> controller) {
         int count = 0;
         for(int i = 0; i < BoardUtils.RANK_COUNT; i++) {
             count++;
             for(int j = 0; j < BoardUtils.FILE_COUNT; j++) {
-                Rectangle r = new Rectangle(80, 80, 80, 80);
-                r.setOnMouseClicked(event -> r.setFill(Color.BLACK));
+                TileRectangle r = new TileRectangle(80, 80, 80, 80, i, j);
+                r.setOnMouseClicked(controller);
                 if(count % 2 == 0) {
                     r.setFill(Color.GREEN);
                 } else {

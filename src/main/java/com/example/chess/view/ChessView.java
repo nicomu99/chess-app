@@ -1,21 +1,14 @@
 package com.example.chess.view;
 
 import com.example.chess.ChessController;
-import com.example.chess.model.BoardUtils;
+import com.example.chess.model.Board;
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class ChessView extends Application {
+
+    private TilePane tilePane;
 
     @Override
     public void start(Stage stage) {
@@ -27,9 +20,8 @@ public class ChessView extends Application {
             controller.setMain(this);
 
             // Create the view of the standard grid map
-            TilePane pane = new TilePane();
-            Scene scene = new Scene(pane);
-            controller.setTilePane(pane);
+            this.tilePane = new TilePane(controller);
+            Scene scene = new Scene(tilePane);
             controller.redrawTilePane();
 
             stage.setTitle("Chess");
@@ -40,6 +32,10 @@ public class ChessView extends Application {
             e.printStackTrace();
         }
 
+    }
+
+    public void updateView(Board board) {
+        this.tilePane.updateView(board);
     }
 
     public static void main(String[] args) {
