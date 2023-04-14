@@ -30,20 +30,23 @@ public class MoveCalculator {
     }
 
     public static ArrayList<Move> checkKnightMoves(Piece piece, Board board, MoveDirection direction) {
-        ArrayList<Move> moves = new ArrayList<>();
 
         Coordinates nextDirection = piece.getCoordinates().addCoordinates(direction.xDirection * 2, direction.yDirection);
-        if(nextDirection.isValidCoordinate()) {
-            if(board.getPieces().containsKey(nextDirection)) {
-                if (board.getPieces().get(nextDirection).getColor() != piece.getColor()) {
-                    moves.add(new AttackMove());
-                }
-            } else {
-                moves.add(new Move());
-            }
-        }
+        ArrayList<Move> moves = new ArrayList<>(getMoves(piece, board, new ArrayList<>(), nextDirection));
 
         nextDirection = piece.getCoordinates().addCoordinates(direction.xDirection, direction.yDirection * 2);
+        moves.addAll(getMoves(piece, board, moves, nextDirection));
+        return moves;
+    }
+
+    public static ArrayList<Move> checkKingMoves(Piece piece, Board board, MoveDirection direction) {
+        ArrayList<Move> moves = new ArrayList<>();
+
+        Coordinates nextDirection = piece.getCoordinates().addCoordinates(direction.xDirection, direction.yDirection);
+        return getMoves(piece, board, moves, nextDirection);
+    }
+
+    private static ArrayList<Move> getMoves(Piece piece, Board board, ArrayList<Move> moves, Coordinates nextDirection) {
         if(nextDirection.isValidCoordinate()) {
             if(board.getPieces().containsKey(nextDirection)) {
                 if (board.getPieces().get(nextDirection).getColor() != piece.getColor()) {
@@ -53,7 +56,6 @@ public class MoveCalculator {
                 moves.add(new Move());
             }
         }
-
         return moves;
     }
 }
