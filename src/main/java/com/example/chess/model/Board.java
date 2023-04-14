@@ -8,14 +8,32 @@ public class Board {
 
     private final HashMap<Coordinates, Tile> tiles;
     private HashMap<Coordinates, Piece> pieces;
+    private Coordinates enPassantTarget;
+    private boolean enPassantPossible;
+    private FactionColor enPassantTaker;
 
     public Board() {
         this.tiles = new HashMap<>();
         this.pieces = new HashMap<>();
+        enPassantTarget = new Coordinates(-1, -1);
+        enPassantPossible = false;
+        enPassantTaker = null;
     }
 
     public HashMap<Coordinates, Piece> getPieces() {
         return this.pieces;
+    }
+
+    public boolean isEnPassantPossible() {
+        return this.enPassantPossible;
+    }
+
+    public Coordinates getEnPassantTarget() {
+        return this.enPassantTarget;
+    }
+
+    public FactionColor getEnPassantTaker() {
+        return this.enPassantTaker;
     }
 
     public void addTile(Tile tile) {

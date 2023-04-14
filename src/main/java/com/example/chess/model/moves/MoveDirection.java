@@ -8,7 +8,7 @@ public enum MoveDirection {
     RIGHT_UPPER(1, -1),
     RIGHT_LOWER(1, 1),
     LEFT(-1, 0),
-    RIGHT(0, -1),
+    RIGHT(1, 0),
     UPPER(0, -1),
     LOWER(0, 1);
 
