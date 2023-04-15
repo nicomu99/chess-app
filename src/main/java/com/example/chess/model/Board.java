@@ -1,43 +1,59 @@
 package com.example.chess.model;
 
+import com.example.chess.model.moves.Move;
 import com.example.chess.model.pieces.Piece;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Board {
 
     private final HashMap<Coordinates, Tile> tiles;
     private HashMap<Coordinates, Piece> pieces;
+    private ArrayList<Move> legalMoves;
     private Coordinates enPassantTarget;
     private boolean enPassantPossible;
     private FactionColor enPassantTaker;
 
     public Board() {
-        this.tiles = new HashMap<>();
-        this.pieces = new HashMap<>();
+        tiles = new HashMap<>();
+        pieces = new HashMap<>();
+        legalMoves = new ArrayList<>();
         enPassantTarget = new Coordinates(-1, -1);
         enPassantPossible = false;
         enPassantTaker = null;
     }
 
     public HashMap<Coordinates, Piece> getPieces() {
-        return this.pieces;
+        return pieces;
+    }
+
+    public Piece getPiece(Coordinates coordinates) {
+        return pieces.get(coordinates);
     }
 
     public boolean isEnPassantPossible() {
-        return this.enPassantPossible;
+        return enPassantPossible;
     }
 
     public Coordinates getEnPassantTarget() {
-        return this.enPassantTarget;
+        return enPassantTarget;
     }
 
     public FactionColor getEnPassantTaker() {
-        return this.enPassantTaker;
+        return enPassantTaker;
+    }
+
+    public ArrayList<Move> getLegalMoves() {
+        return legalMoves;
+    }
+
+    public void setLegalMoves(ArrayList<Move> legalMoves) {
+        this.legalMoves = legalMoves;
     }
 
     public void addTile(Tile tile) {
-        this.tiles.put(tile.getCoordinates(), tile);
+        tiles.put(tile.getCoordinates(), tile);
     }
 
     public void addPiece(Piece piece) {

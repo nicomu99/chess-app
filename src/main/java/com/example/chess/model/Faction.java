@@ -1,9 +1,5 @@
 package com.example.chess.model;
 
-import com.example.chess.model.pieces.Piece;
-
-import java.util.ArrayList;
-
 public class Faction {
 
     private boolean hasNextMove;
@@ -12,6 +8,14 @@ public class Faction {
     public Faction(boolean hasNextMove, FactionColor factionColor) {
         this.hasNextMove = hasNextMove;
         this.factionColor = factionColor;
+    }
+
+    public boolean hasNextMove() {
+        return hasNextMove;
+    }
+
+    public void setHasNextMove(boolean hasNextMove) {
+        this.hasNextMove = hasNextMove;
     }
 
     public void executeNextMove() { }

@@ -20,11 +20,11 @@ public class MoveCalculator {
             if(nextDirection.isValidCoordinate() && !endReached) {
                 if(board.getPieces().containsKey(nextDirection)) {
                     if (board.getPieces().get(nextDirection).getColor() != piece.getColor()) {
-                        moves.add(new AttackMove());
+                        moves.add(new AttackMove(piece.getCoordinates(), nextDirection));
                     }
                     endReached = true;
                 } else {
-                    moves.add(new Move());
+                    moves.add(new Move(piece.getCoordinates(), nextDirection));
                 }
             }
         }
@@ -52,10 +52,10 @@ public class MoveCalculator {
         if(nextDirection.isValidCoordinate()) {
             if(board.getPieces().containsKey(nextDirection)) {
                 if (board.getPieces().get(nextDirection).getColor() != piece.getColor()) {
-                    moves.add(new AttackMove());
+                    moves.add(new AttackMove(piece.getCoordinates(), nextDirection));
                 }
             } else {
-                moves.add(new Move());
+                moves.add(new Move(piece.getCoordinates(), nextDirection));
             }
         }
         return moves;
@@ -68,11 +68,11 @@ public class MoveCalculator {
         Coordinates oneDistanceMove = pawn.getCoordinates().addCoordinates(direction.xDirection, direction.yDirection);
         Coordinates twoDistanceMove = pawn.getCoordinates().addCoordinates(direction.xDirection, direction.yDirection * 2);
         if(!board.getPieces().containsKey(oneDistanceMove)) {
-            moves.add(new Move());
+            moves.add(new Move(pawn.getCoordinates(), oneDistanceMove));
 
             if(!pawn.hasMoved()) {
                 if(!board.getPieces().containsKey(twoDistanceMove)) {
-                    moves.add(new Move());
+                    moves.add(new Move(pawn.getCoordinates(), twoDistanceMove));
                 }
             }
         }
@@ -81,7 +81,7 @@ public class MoveCalculator {
         Coordinates leftAttackMove = pawn.getCoordinates().addCoordinates(leftAttackDirection.xDirection, leftAttackDirection.yDirection);
         if(board.getPieces().containsKey(leftAttackMove)) {
             if(board.getPieces().get(leftAttackMove).getColor() != pawn.getColor()) {
-                moves.add(new AttackMove());
+                moves.add(new AttackMove(pawn.getCoordinates(), leftAttackMove));
             }
         }
 
@@ -89,7 +89,7 @@ public class MoveCalculator {
         Coordinates rightAttackMove = pawn.getCoordinates().addCoordinates(rightAttackDirection.xDirection, rightAttackDirection.yDirection);
         if(board.getPieces().containsKey(rightAttackMove)) {
             if(board.getPieces().get(rightAttackMove).getColor() != pawn.getColor()) {
-                moves.add(new AttackMove());
+                moves.add(new AttackMove(pawn.getCoordinates(), rightAttackMove));
             }
         }
 
@@ -97,9 +97,9 @@ public class MoveCalculator {
         if(board.isEnPassantPossible()) {
             if(board.getEnPassantTaker() == pawn.getColor()) {
                 if(board.getEnPassantTarget() == rightAttackMove) {
-                    moves.add(new AttackMove());
+                    moves.add(new AttackMove(pawn.getCoordinates(), rightAttackMove));
                 } else if(board.getEnPassantTarget() == leftAttackMove) {
-                    moves.add(new AttackMove());
+                    moves.add(new AttackMove(pawn.getCoordinates(), leftAttackMove));
                 }
             }
         }

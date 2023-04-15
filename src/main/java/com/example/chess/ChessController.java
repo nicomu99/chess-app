@@ -2,6 +2,7 @@ package com.example.chess;
 
 import com.example.chess.model.ModelHandler;
 import com.example.chess.view.ChessView;
+import com.example.chess.view.TileRectangle;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -11,21 +12,21 @@ public class ChessController implements EventHandler<MouseEvent> {
     private final ModelHandler modelHandler;
 
     public ChessController() {
-        this.chessView = new ChessView();
-        this.modelHandler = new ModelHandler();
-        this.modelHandler.initializeGame();
+        modelHandler = new ModelHandler();
+        modelHandler.initializeGame();
     }
 
-    public void setMain(ChessView view) {
-        this.chessView = view;
+    public void setChessView(ChessView view) {
+        chessView = view;
     }
 
     public void redrawTilePane() {
-        this.chessView.updateView(this.modelHandler.getBoard());
+        this.chessView.updateView(modelHandler.getBoard());
     }
 
     @Override
     public void handle(MouseEvent event) {
-        System.out.println(event.getSource().toString());
+        TileRectangle rectangle = (TileRectangle) event.getSource();
+        chessView.updateView(modelHandler.handleMove(rectangle.getCoordinates()));
     }
 }

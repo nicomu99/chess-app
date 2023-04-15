@@ -17,10 +17,10 @@ public class ChessView extends Application {
 
             // Create the controller
             ChessController controller = new ChessController();
-            controller.setMain(this);
+            controller.setChessView(this);
 
             // Create the view of the standard grid map
-            this.tilePane = new TilePane(controller);
+            tilePane = new TilePane(controller);
             Scene scene = new Scene(tilePane);
             controller.redrawTilePane();
 
@@ -35,7 +35,7 @@ public class ChessView extends Application {
     }
 
     public void updateView(Board board) {
-        this.tilePane.updateView(board);
+        tilePane.updateView(board);
     }
 
     public static void main(String[] args) {
